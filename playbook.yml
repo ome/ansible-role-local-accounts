@@ -1,0 +1,15 @@
+---
+- hosts: all
+  roles:
+    - role: ansible-role-local-accounts
+      local_accounts_create:
+        - user: alice
+          uid: 2020
+        - user: bob
+          uid: 1010
+          groups: wheel
+          sshpubkey: "ssh-rsa XXXXX"
+      # Should have no effect since users don't exist
+      local_accounts_delete:
+        - user3
+        - user4
