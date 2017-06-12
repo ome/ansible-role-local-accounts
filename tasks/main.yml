@@ -28,7 +28,10 @@
   become: yes
   command: chage -d 0 {{ item.item.user }}
   with_items: "{{ changes.results }}"
-  when: "{{ item.item.require_first_password | default(False) and item.changed }}"
+  when: "(item.item.require_first_password | default(False)) and item.changed"
+  # TODO: Either delete since this is never used, or change to a handler
+  tags:
+  - skip_ansible_lint
 
 - name: users | ssh authorised keys
   become: yes

@@ -1,0 +1,25 @@
+---
+driver:
+  name: docker
+
+vagrant:
+  platforms:
+    - name: centos7
+      box: centos/7
+  providers:
+    - name: virtualbox
+      type: virtualbox
+      options:
+        memory: 512
+        cpus: 1
+  instances:
+    - name: local-accounts
+
+docker:
+  containers:
+  - name: local-accounts
+    image: centos
+    image_version: 7
+
+verifier:
+  name: testinfra
