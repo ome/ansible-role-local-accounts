@@ -1,6 +1,9 @@
 Local Accounts
 ==============
 
+[![Build Status](https://travis-ci.org/ome/ansible-role-local-accounts.svg)](https://travis-ci.org/ome/ansible-role-local-accounts)
+[![Ansible Role](https://img.shields.io/ansible/role/41887.svg)](https://galaxy.ansible.com/ome/local_accounts/)
+
 Create or remove local user accounts.
 
 
@@ -33,7 +36,7 @@ Example Playbook
 
     - hosts: localhost
       roles:
-      - role: local-accounts
+      - role: ome.local_accounts
         local_accounts_create:
         - user: test1
           uid: 1001
