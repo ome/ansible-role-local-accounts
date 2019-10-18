@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Converge
+  hosts: all
   roles:
     - role: ansible-role-local-accounts
       local_accounts_create:
