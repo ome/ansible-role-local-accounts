@@ -14,7 +14,7 @@ def test_user_alice(host):
     assert not host.file('/home/test1/.ssh').exists
 
 
-def test_user_bob(host:
+def test_user_bob(host):
     u = host.user('bob')
     assert u.exists
     assert u.uid == 1010
