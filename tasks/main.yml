@@ -2,19 +2,19 @@
 # tasks file for roles/local-accounts
 
 - name: users | create local groups
-  become: yes
+  become: true
   group:
     gid: "{{ item.gid }}"
     name: "{{ item.group }}"
     state: present
-    system: no
+    system: false
   with_items: "{{ local_accounts_groups | default([]) }}"
 
 - name: users | create local users
-  become: yes
+  become: true
   user:
-    append: yes
-    createhome: yes
+    append: true
+    createhome: true
     groups: "{{ item.groups | default(omit) }}"
     name: "{{ item.user }}"
     password: "{{ item.password | default(omit) }}"
@@ -25,28 +25,28 @@
   register: changes
 
 - name: users | force password change for new users
-  become: yes
+  become: true
   command: chage -d 0 {{ item.item.user }}
   with_items: "{{ changes.results }}"
   when: "(item.item.require_first_password | default(False)) and item.changed"
   # TODO: Either delete since this is never used, or change to a handler
   tags:
-  - skip_ansible_lint
+    - skip_ansible_lint
 
 - name: users | ssh authorised keys
-  become: yes
+  become: true
   become_user: "{{ item.user }}"
   authorized_key:
-    exclusive: no
+    exclusive: false
     key: "{{ item.sshpubkey }}"
-    manage_dir: no
+    manage_dir: false
     state: present
     user: "{{ item.user }}"
   with_items: "{{ local_accounts_create | default([]) }}"
   when: item.sshpubkey is defined
 
 - name: users | delete local users
-  become: yes
+  become: true
   user:
     name: "{{ item }}"
     state: absent
