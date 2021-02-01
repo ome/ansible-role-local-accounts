@@ -25,4 +25,4 @@ def test_user_bob(host):
     assert f.user == 'bob'
     assert f.group == 'bob'
     assert f.mode == 0o600
-    assert f.content_string == 'ssh-rsa XXXXX '
+    assert f.content_string.rstrip() == 'ssh-rsa XXXXX'
