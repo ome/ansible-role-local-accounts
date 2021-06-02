@@ -26,3 +26,19 @@ def test_user_bob(host):
     assert f.group == 'bob'
     assert f.mode == 0o600
     assert f.content_string.rstrip() == 'ssh-rsa XXXXX'
+
+
+def test_precreated_users(host):
+    u = host.user('user1')
+    assert u.exists
+    assert u.uid == 1001
+    u = host.user('user2')
+    assert u.exists
+    assert u.uid == 1002
+
+
+def test_deleted_users(host):
+    u = host.user('user3')
+    assert not u.exists
+    u = host.user('user4')
+    assert not u.exists

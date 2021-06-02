@@ -1,0 +1,37 @@
+---
+- name: Create local users
+  hosts: all
+  tasks:
+    - name: create users
+      become: true
+      user:
+        append: true
+        createhome: true
+        name: "{{ item.name }}"
+        state: present
+        uid: "{{ item.uid }}"
+        update_password: on_create
+      with_items: "{{ users }}"
+    - name: set authorized keys
+      become: true
+      become_user: "{{ item.name }}"
+      authorized_key:
+        key: "{{ item.key }}"
+        manage_dir: false
+        state: present
+        user: "{{ item.name }}"
+      with_items: "{{ users }}"
+  vars:
+    users:
+      - name: user1
+        uid: 1001
+        key: "ssh-rsa 1001"
+      - name: user2
+        uid: 1002
+        key: "ssh-rsa 1002"
+      - name: user3
+        uid: 1003
+        key: "ssh-rsa 1003"
+      - name: user4
+        uid: 1004
+        key: "ssh-rsa 1004"

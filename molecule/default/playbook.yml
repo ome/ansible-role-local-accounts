@@ -10,7 +10,6 @@
           uid: 1010
           groups: wheel
           sshpubkey: "ssh-rsa XXXXX"
-      # Should have no effect since users don't exist
       local_accounts_delete:
         - user3
         - user4
