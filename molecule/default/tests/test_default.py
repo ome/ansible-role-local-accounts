@@ -37,6 +37,12 @@ def test_precreated_users(host):
     assert u.uid == 1002
 
 
+def test_precreated_users(host):
+    u = host.user('user5')
+    assert u.exists
+    assert u.uid == 1005
+
+
 def test_deleted_users(host):
     u = host.user('user3')
     assert not u.exists

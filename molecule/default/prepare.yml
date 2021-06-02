@@ -35,3 +35,6 @@
       - name: user4
         uid: 1004
         key: "ssh-rsa 1004"
+      - name: user5
+        uid: 1005
+        key: "ssh-rsa 1005"

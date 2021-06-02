@@ -10,6 +10,13 @@
           uid: 1010
           groups: wheel
           sshpubkey: "ssh-rsa XXXXX"
+        - user: user1
+          uid: 1001
+          sshpubkey: "ssh-rsa new 1001"
+        - user: user2
+          uid: 1002
+          sshpubkey: "ssh-rsa new 1002"
+          sshexclusive: true
       local_accounts_delete:
         - user3
         - user4
