@@ -37,7 +37,7 @@
   become: true
   become_user: "{{ item.user }}"
   authorized_key:
-    exclusive: false
+    exclusive: "{{ item.sshexclusive | default(false) }}"
     key: "{{ item.sshpubkey }}"
     manage_dir: false
     state: present

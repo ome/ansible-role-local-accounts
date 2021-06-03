@@ -16,7 +16,8 @@ Role Variables
   - `uid`: user-ID (required)
   - `groups`: optional list of groups to be appended to the user's default groups
   - `password`: optional password hash, only set if the user is created in this invocation
-  - `sshpubkey`: optional SSH public key, will be appended to any existing keys if not already present
+  - `sshpubkey`: optional SSH public key to be added to the authorized_keys file
+  - `sshexclusive`: optional, if `True` and `sshpubkey` is specified, removes all other non-specified keys. Otherwise, appends the key to any existing keys if not already present. Default: `False.
   - `require_first_password`: optional, if `True` attempt to force a newly created user to change their password on first login, default `False`.
 - `local_accounts_groups`: A list of dictionaries containing information on the group to be created (default: empty).
   Each item must contain the following fields:
