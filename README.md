@@ -2,7 +2,7 @@ Local Accounts
 ==============
 
 [![Actions Status](https://github.com/ome/ansible-role-local-accounts/workflows/Molecule/badge.svg)](https://github.com/ome/ansible-role-local-accounts/actions)
-[![Ansible Role](https://img.shields.io/ansible/role/41887.svg)](https://galaxy.ansible.com/ome/local_accounts/)
+[![Ansible Role](https://img.shields.io/badge/ansible--galaxy-local_accounts-blue.svg)](https://galaxy.ansible.com/ui/standalone/roles/ome/local_accounts/)
 
 Create or remove local user accounts.
 
