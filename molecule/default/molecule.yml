@@ -9,7 +9,7 @@ lint: |
     flake8
 platforms:
   - name: local-accounts
-    image: centos:7
+    image: rockylinux:9
 provisioner:
   name: ansible
   lint:
