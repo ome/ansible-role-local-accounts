@@ -10,10 +10,10 @@
     system: false
   with_items: "{{ local_accounts_groups | default([]) }}"
 
-- name: users | create local users
+- name: users | create local users and append them to groups
   become: true
   ansible.builtin.user:
-    append: true
+    append: "{{ item.groups | default('') | length > 0 }}"
     createhome: true
     groups: "{{ item.groups | default(omit) }}"
     name: "{{ item.user }}"
@@ -23,6 +23,7 @@
     update_password: on_create
   with_items: "{{ local_accounts_create | default([]) }}"
   register: changes
+
 
 - name: users | force password change for new users
   become: true

@@ -4,8 +4,8 @@
   tasks:
     - name: create users
       become: true
-      user:
-        append: true
+      ansible.builtin.user:
+        append: "{{ item.groups | default('') | length > 0 }}"
         createhome: true
         name: "{{ item.name }}"
         state: present
@@ -15,7 +15,7 @@
     - name: set authorized keys
       become: true
       become_user: "{{ item.name }}"
-      authorized_key:
+      ansible.posix.authorized_key:
         key: "{{ item.key }}"
         manage_dir: false
         state: present
